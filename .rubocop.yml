@@ -1,0 +1,49 @@
+# inherit_from: .rubocop_todo.yml
+
+# AllCops settings
+AllCops:
+  TargetRubyVersion: 3.0 # Specify your target Ruby version
+  Exclude:
+    - 'db/**/*' # Exclude database-related files
+    - 'bin/**/*' # Exclude binary files
+    - 'config/**/*' # Exclude configuration files
+    - 'spec/**/*' # Exclude spec files
+    - 'test/**/*' # Exclude test files
+
+# Naming
+Naming/FileName:
+  Exclude:
+    - 'db/schema.rb' # Exclude schema.rb from file name checks
+
+# Linting
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'Gemfile' # Exclude Gemfile from ambiguous block association checks
+Lint/RedundantCopEnableDirective:
+  Enabled: false # Disable unnecessary enabling of cops
+
+# Style
+Style/Documentation:
+  Enabled: true
+Style/FrozenStringLiteralComment:
+  Enabled: true
+Style/IfUnlessModifier:
+  Enabled: true
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+Style/WordArray:
+  Enabled: true
+
+# Metrics
+Metrics/AbcSize:
+  Max: 20
+Metrics/MethodLength:
+  Max: 20
+Metrics/ParameterLists:
+  Max: 4
+Metrics/BlockLength:
+  Exclude:
+    - 'Rspec/DescribeClass'
+    - 'Rspec/DescribeMethod'
+    - 'RSpec/ExampleGroup'
+  Max: 15
