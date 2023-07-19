@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users
 
-  # Defines the root path route ("/")
-  root 'welcome#index'
+  resources :users, only: [:create]
+
+  # Other routes for additional resources and actions
+
+  root to: 'welcome#index'
 end
