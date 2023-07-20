@@ -1,4 +1,4 @@
-name: Github CI
+name: GitHub CI
 
 on:
   pull_request:
@@ -36,18 +36,15 @@ jobs:
           cp config/database.yml.example config/database.yml
           sed -i "s/database:.*/database: ticket_star_app_test/" config/database.yml
 
+      - name: Set up Heroku CLI
+        uses: actions/heroku@v4
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+
       - name: Create test database
         run: |
-          RAILS_ENV=test bundle exec rake db:create
-          RAILS_ENV=test bundle exec rake db:schema:load
+          heroku pg:reset --confirm your-heroku-app-name --app your-heroku-app-name
+          heroku run rake db:migrate --app your-heroku-app-name
 
       - name: Run tests
         run: bundle exec rspec
-
-      - name: Deploy to Heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "ticket-star"
-          heroku_email: "tsetseg.yo@gmail.com"
-          usedb: true
