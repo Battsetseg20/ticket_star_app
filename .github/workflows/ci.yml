@@ -31,20 +31,18 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
 
+      - name: Set environment variables for Heroku Postgres
+        run: echo "HEROKU_POSTGRESQL_BLUE_URL=postgres://mrtveehhkhaerb:a534ce884097024e48286eb082ceaea56b9c5f4beffa4b529f67d5c7ff10f5f4@ec2-34-226-11-94.compute-1.amazonaws.com:5432/d381tkkq667nlj" >> $GITHUB_ENV
+
       - name: Configure database
         run: |
           cp config/database.yml.example config/database.yml
           sed -i "s/database:.*/database: ticket_star_app_test/" config/database.yml
 
-      - name: Set up Heroku CLI
-        uses: actions/heroku@v4
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-
       - name: Create test database
         run: |
-          heroku pg:reset --confirm your-heroku-app-name --app your-heroku-app-name
-          heroku run rake db:migrate --app your-heroku-app-name
+          bundle exec rake db:create RAILS_ENV=test
+          bundle exec rake db:schema:load RAILS_ENV=test
 
       - name: Run tests
         run: bundle exec rspec
