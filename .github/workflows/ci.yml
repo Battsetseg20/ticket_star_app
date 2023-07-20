@@ -12,6 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://mrtveehhkhaerb:a534ce884097024e48286eb082ceaea56b9c5f4beffa4b529f67d5c7ff10f5f4@ec2-34-226-11-94.compute-1.amazonaws.com:5432/d381tkkq667nlj"
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -30,9 +34,6 @@ jobs:
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
-
-      - name: Set environment variables for Heroku Postgres
-        run: echo "HEROKU_POSTGRESQL_BLUE_URL=postgres://mrtveehhkhaerb:a534ce884097024e48286eb082ceaea56b9c5f4beffa4b529f67d5c7ff10f5f4@ec2-34-226-11-94.compute-1.amazonaws.com:5432/d381tkkq667nlj" >> $GITHUB_ENV
 
       - name: Configure database
         run: |
