@@ -36,6 +36,9 @@ gem 'rubocop', require: false
 # HTML Slim Templates
 gem 'slim-rails'
 
+# Date format
+gem 'date_validator'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -87,9 +90,17 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'capybara', '~> 2.7', '>= 2.7.1'
+  gem 'rubocop-capybara', require: false
+  gem 'rubocop-factory_bot', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'codeclimate-test-reporter', require: false
+  gem 'simplecov', require: false
 end
 
 group :test do
   # Database cleaner for tests
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
 end
