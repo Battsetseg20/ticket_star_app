@@ -2,9 +2,9 @@
 
 class User < ApplicationRecord
   # Associations
-  # belongs_to :address
-  # has_one :customer
-  # has_one :event_organizer
+  # belongs_to :address TO DELETE if no time to implement
+  has_one :customer, dependent: :destroy
+  has_one :event_organizer, dependent: :destroy
   # has_many :events
 
   # Devise module for user authentication
@@ -29,12 +29,9 @@ class User < ApplicationRecord
 
   private
 
-  def convert_birthdate_format
-    self.birthdate = Date.strptime(birthdate, "%d/%m/%Y") if birthdate.present? && birthdate.is_a?(String)
-  rescue ArgumentError
-    errors.add(:birthdate, "is invalid")
-  end
-
+  ########################################
+  # Methods for custom validations
+  ########################################
   def above_majority_age
     return unless birthdate && ((Date.current - birthdate.to_date) / 365.25).to_i < 18
 
@@ -47,6 +44,9 @@ class User < ApplicationRecord
     errors.add(:username, "cannot be all the same character")
   end
 
+  ###########################
+  # Methods for format conversion
+  ###########################
   def downcase_fields
     self.email = email.downcase if email.present?
     self.username = username.downcase if username.present?
@@ -55,5 +55,11 @@ class User < ApplicationRecord
   def format_names
     self.firstname = firstname.titleize if firstname.present?
     self.lastname = lastname.titleize if lastname.present?
+  end
+
+  def convert_birthdate_format
+    self.birthdate = Date.strptime(birthdate, "%d/%m/%Y") if birthdate.present? && birthdate.is_a?(String)
+  rescue ArgumentError
+    errors.add(:birthdate, "is invalid")
   end
 end

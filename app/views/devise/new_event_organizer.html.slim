@@ -1,19 +1,18 @@
-h2
-  | Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+h2 Sign up as an Event Organizer
+= form_for(resource, as: resource_name, url: new_event_organizer_registration_path) do |f|
   = render "devise/shared/error_messages", resource: resource
   .field
-    = f.label :username
+    = f.label :username, "Username", required: true
     br
     = f.text_field :username
   .field
     = f.label :firstname
     br
-    = f.text_field :firstname
+    = f.text_field :firstname, required: true
   .field
     = f.label :lastname
     br
-    = f.text_field :lastname
+    = f.text_field :lastname, required: true
   .field
     = f.label :birthdate
     br
@@ -21,7 +20,7 @@ h2
   .field
     = f.label :email
     br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
+    = f.email_field :email, autofocus: true, autocomplete: "email", required: true
   .field
     = f.label :password
     - if @minimum_password_length
@@ -30,11 +29,10 @@ h2
         = @minimum_password_length
         |  characters minimum)
     br
-    = f.password_field :password, autocomplete: "new-password"
+    = f.password_field :password, autocomplete: "new-password", required: true
   .field
     = f.label :password_confirmation
     br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
+    = f.password_field :password_confirmation, autocomplete: "new-password", required: true
   .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+    = f.submit "Sign up as an Event Organizer"
