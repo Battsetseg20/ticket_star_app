@@ -57,8 +57,6 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: ticket_star_app_test
-  adapter: postgresql
   url: <%= ENV['HEROKU_POSTGRESQL_BLUE_URL'] %>
 
 
