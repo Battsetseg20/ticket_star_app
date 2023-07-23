@@ -3,7 +3,8 @@
 Rails.application.routes.draw do
   # Devise routes for User
   devise_for :users, controllers: {
-    registrations: "users/registrations"
+    registrations: "users/registrations",
+    sessions: "users/sessions"
   }
 
   devise_scope :user do
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
     post "/register/customer", to: "users/registrations#create", defaults: { user_type: "customer" }
     post "/register/event_organizer", to: "users/registrations#create", defaults: { user_type: "event_organizer" }
   end
+
+  resources :event_items, only: [:new, :create, :edit, :update, :show, :index, :destroy]
 
   # TODO:
 
