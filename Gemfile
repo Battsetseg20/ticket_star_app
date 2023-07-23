@@ -57,6 +57,8 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 # gem "sassc-rails"
 
+gem 'flash'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -85,22 +87,25 @@ end
 #  gem "webdrivers"
 #end
 
-# Testing
+# Testing for development and style guide enforcement
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
-  gem 'faker'
-  gem 'capybara', '~> 2.7', '>= 2.7.1'
-  gem 'rubocop-capybara', require: false
-  gem 'rubocop-factory_bot', require: false
-  gem 'rubocop-rails', require: false
-  gem 'rubocop-rspec', require: false
-  gem 'codeclimate-test-reporter', require: false
-  gem 'simplecov', require: false
+  gem 'rspec-rails' # Testing framework for writing and executing tests
+  gem 'factory_bot_rails' # Fixture replacement for generating test data
+  gem 'faker' # Library for generating fake data
+  gem 'capybara', '~> 2.7', '>= 2.7.1' # Integration testing tool for simulating user interactions with the application
+  gem 'rubocop-capybara', require: false # RuboCop extension for Capybara-specific linting rules
+  gem 'rubocop-factory_bot', require: false # RuboCop extension for FactoryBot-specific linting rules
+  gem 'rubocop-rails', require: false # RuboCop extension for Rails-specific linting rules
+  gem 'rubocop-rspec', require: false # RuboCop extension for RSpec-specific linting rules
+  gem 'codeclimate-test-reporter', require: false # Code coverage reporting tool for tracking test coverage
+  gem 'simplecov', require: false # Code coverage analysis tool
 end
 
 group :test do
-  # Database cleaner for tests
-  gem 'database_cleaner'
-  gem 'shoulda-matchers'
+  gem 'database_cleaner' # Library for cleaning databases between test runs
+  gem 'shoulda-matchers' # Collection of matchers for testing common Rails functionality
+  gem 'rails-controller-testing' # Support for controller testing, including the `assert_template` method
+  gem 'shoulda-callback-matchers' # Matchers for testing model callbacks
+  gem 'fakeredis' # Mock Redis connection library for testing Redis interactions
 end
+
