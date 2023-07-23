@@ -1,14 +1,18 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  # User model. It serves as the parent model for Customer and EventOrganizer models.
+  # It is also the model that Devise uses for authentication. So validation concerning registration on the two models are placed here.
+  # It has a one-to-one relationship with Customer and EventOrganizer models.
+
   # Associations
   # belongs_to :address TO DELETE if no time to implement
   has_one :customer, dependent: :destroy
   has_one :event_organizer, dependent: :destroy
-  # has_many :events
+  # has_many :event_items, through: :event_organizer
 
   # Devise module for user authentication
-  devise :database_authenticatable, :registerable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :validatable
 
   before_validation :convert_birthdate_format
   before_validation :downcase_fields
@@ -26,6 +30,16 @@ class User < ApplicationRecord
 
   validate :above_majority_age
   validate :username_not_all_the_same
+
+  def event_organizer?
+    return false unless event_organizer.present?
+    true
+  end
+
+  def customer?
+    return false unless customer.present?
+    true
+  end
 
   private
 
