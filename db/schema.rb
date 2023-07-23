@@ -10,18 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_20_145443) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_23_145703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "customers", force: :cascade do |t|
+  create_table "customers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
-  create_table "event_organizers", force: :cascade do |t|
+  create_table "event_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.date "date"
+    t.time "time"
+    t.string "location"
+    t.integer "status", default: 0
+    t.uuid "event_organizer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_organizer_id"], name: "index_event_items_on_event_organizer_id"
+  end
+
+  create_table "event_organizers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -42,5 +55,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_145443) do
   end
 
   add_foreign_key "customers", "users"
+  add_foreign_key "event_items", "event_organizers"
   add_foreign_key "event_organizers", "users"
 end

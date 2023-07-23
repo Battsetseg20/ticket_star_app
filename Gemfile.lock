@@ -74,6 +74,7 @@ GEM
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    cancan (1.6.10)
     capybara (2.18.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -316,6 +317,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  cancan
   capybara (~> 2.7, >= 2.7.1)
   codeclimate-test-reporter
   database_cleaner

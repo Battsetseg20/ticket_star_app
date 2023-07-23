@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -28,16 +30,16 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Authentication and User Management
-gem 'devise'
+gem "devise"
 
 # Ruby Code Style Enforcement
-gem 'rubocop', require: false
+gem "rubocop", require: false
 
 # HTML Slim Templates
-gem 'slim-rails'
+gem "slim-rails"
 
 # Date format
-gem 'date_validator'
+gem "date_validator"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -49,7 +51,7 @@ gem 'date_validator'
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -57,21 +59,21 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 # gem "sassc-rails"
 
-gem 'flash'
+gem "cancan"
+gem "flash"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem "html2slim"
   gem "web-console"
-  # 
-  gem 'html2slim'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -80,32 +82,31 @@ group :development do
   # gem "spring"
 end
 
-#group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+# group :test do
+# Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
 #  gem "capybara"
 #  gem "selenium-webdriver"
 #  gem "webdrivers"
-#end
+# end
 
 # Testing for development and style guide enforcement
 group :development, :test do
-  gem 'rspec-rails' # Testing framework for writing and executing tests
-  gem 'factory_bot_rails' # Fixture replacement for generating test data
-  gem 'faker' # Library for generating fake data
-  gem 'capybara', '~> 2.7', '>= 2.7.1' # Integration testing tool for simulating user interactions with the application
-  gem 'rubocop-capybara', require: false # RuboCop extension for Capybara-specific linting rules
-  gem 'rubocop-factory_bot', require: false # RuboCop extension for FactoryBot-specific linting rules
-  gem 'rubocop-rails', require: false # RuboCop extension for Rails-specific linting rules
-  gem 'rubocop-rspec', require: false # RuboCop extension for RSpec-specific linting rules
-  gem 'codeclimate-test-reporter', require: false # Code coverage reporting tool for tracking test coverage
-  gem 'simplecov', require: false # Code coverage analysis tool
+  gem "capybara", "~> 2.7", ">= 2.7.1" # Integration testing tool for simulating user interactions with the application
+  gem "codeclimate-test-reporter", require: false # Code coverage reporting tool for tracking test coverage
+  gem "factory_bot_rails" # Fixture replacement for generating test data
+  gem "faker" # Library for generating fake data
+  gem "rspec-rails" # Testing framework for writing and executing tests
+  gem "rubocop-capybara", require: false # RuboCop extension for Capybara-specific linting rules
+  gem "rubocop-factory_bot", require: false # RuboCop extension for FactoryBot-specific linting rules
+  gem "rubocop-rails", require: false # RuboCop extension for Rails-specific linting rules
+  gem "rubocop-rspec", require: false # RuboCop extension for RSpec-specific linting rules
+  gem "simplecov", require: false # Code coverage analysis tool
 end
 
 group :test do
-  gem 'database_cleaner' # Library for cleaning databases between test runs
-  gem 'shoulda-matchers' # Collection of matchers for testing common Rails functionality
-  gem 'rails-controller-testing' # Support for controller testing, including the `assert_template` method
-  gem 'shoulda-callback-matchers' # Matchers for testing model callbacks
-  gem 'fakeredis' # Mock Redis connection library for testing Redis interactions
+  gem "database_cleaner" # Library for cleaning databases between test runs
+  gem "fakeredis" # Mock Redis connection library for testing Redis interactions
+  gem "rails-controller-testing" # Support for controller testing, including the `assert_template` method
+  gem "shoulda-callback-matchers" # Matchers for testing model callbacks
+  gem "shoulda-matchers" # Collection of matchers for testing common Rails functionality
 end
-
