@@ -1,0 +1,33 @@
+= form_with model: event_item, url: event_items_path, local: true do |form|
+  - if event_item.errors.any?
+    .error-messages
+      h3 Errors
+      ul
+        - event_item.errors.full_messages.each do |message|
+          li = message
+
+  .form-group
+    = form.label :title
+    = form.text_field :title, class: 'form-control', required: true
+
+  .form-group
+    = form.label :description
+    = form.text_area :description, class: 'form-control', required: true
+
+  .form-group
+    = form.label :date
+    = form.date_field :date, class: 'form-control', required: true
+
+  .form-group
+    = form.label :time
+    = form.time_field :time, class: 'form-control', required: true
+
+  .form-group
+    = form.label :location
+    = form.text_field :location, class: 'form-control', required: true
+
+  .form-group
+    = form.label :status
+    = form.select :status, EventItem.statuses.keys, {}, class: 'form-control', required: true
+
+  = form.submit 'Create Event', class: 'btn btn-primary'

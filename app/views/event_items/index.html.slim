@@ -1,0 +1,11 @@
+.container
+  h1 Event Items
+
+  - if current_user.event_organizer?
+    = link_to 'Create New Event', new_event_item_path, class: 'btn btn-primary'
+
+  ul
+    - @event_items.each do |event_item|
+      li = link_to event_item.title, event_item_path(event_item)
+
+  = link_to 'Back to Events', event_items_path, class: 'btn btn-secondary'

@@ -1,0 +1,19 @@
+.container
+  .row
+    .col-md-8.offset-md-2
+      h1 Event Details
+      hr
+
+      .card
+        .card-body
+          h5.card-title = @event_item.title
+          p.card-text = @event_item.description
+          p.card-text = "Date: #{@event_item.date}"
+          p.card-text = "Time: #{@event_item.time}"
+          p.card-text = "Location: #{@event_item.location}"
+          p.card-text = "Status: #{@event_item.status}"
+
+      - if can? :update, @event_item
+        = link_to 'Edit', edit_event_item_path(@event_item), class: 'btn btn-primary'
+        = link_to 'Delete', event_item_path(@event_item), method: :delete, data: { confirm: 'Are you sure you want to delete this event?' }, class: 'btn btn-danger'
+      = link_to 'Back', event_items_path, class: 'btn btn-secondary'
