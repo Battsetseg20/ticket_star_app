@@ -83,18 +83,18 @@ RSpec.describe EventItemsController, type: :controller do
       context "with valid parameters" do
         it "creates a new event item" do
           expect do
-            post :create, params: { event_item: attributes_for(:event_item) }
-          end.to change(EventItem, :count).by(1)
+            post :create, params: { event_item: attributes_for(:event_item).merge(ticket_attributes: attributes_for(:ticket)) }
+          end.to change(EventItem, :count).by(1).and change(Ticket, :count).by(1)
         end
 
         it "redirects to the created event item" do
-          post :create, params: { event_item: attributes_for(:event_item) }
+          post :create, params: { event_item: attributes_for(:event_item).merge(ticket_attributes: attributes_for(:ticket)) }
           expect(response).to redirect_to(EventItem.last)
         end
 
         it "sets the flash notice message" do
-          post :create, params: { event_item: attributes_for(:event_item) }
-          expect(flash[:notice]).to eq("Your event was successfully created.")
+          post :create, params: { event_item: attributes_for(:event_item).merge(ticket_attributes: attributes_for(:ticket)) }
+          expect(flash[:notice]).to include("Your event #{EventItem.last.title} was successfully created.")
         end
       end
 

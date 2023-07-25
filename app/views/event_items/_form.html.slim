@@ -30,4 +30,14 @@
     = form.label :status
     = form.select :status, EventItem.statuses.keys, {}, class: 'form-control', required: true
 
+  / Fields for ticket attributes
+  = form.fields_for :ticket do |ticket_fields|
+    .form-group
+      = ticket_fields.label :price
+      = ticket_fields.text_field :price, class: 'form-control',  step: '0.01', min: '0', required: true
+
+    .form-group
+      = ticket_fields.label :quantity_available
+      = ticket_fields.number_field :quantity_available, class: 'form-control', min: '0', step: '1', required: true
+
   = form.submit 'Create Event', class: 'btn btn-primary'

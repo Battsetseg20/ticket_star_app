@@ -1,0 +1,36 @@
+.container 
+  .row
+    .col-md-12
+      h1 Your Purchase
+      tr 
+        td
+          | Event:
+        td
+          = @purchase.ticket.event_item.title
+      tr
+        td
+          | Price:
+        td
+          = number_to_currency(@purchase.ticket.price, unit: "$")
+      tr
+        td
+          | Quantity:
+        td
+          = @purchase.quantity
+      tr
+        td
+          | Total:
+        td
+          = number_to_currency(@purchase.purchase_total, unit: "$")
+      tr
+        td
+          | Status: 
+        td      
+          = @purchase.status
+
+      - if @purchase.status == 'succeeded'
+        | You can download your ticket and QR code below:
+        p
+          = link_to "Download Ticket", rails_blob_path(@purchase.ticket_pdf, disposition: "attachment")
+      - else
+        p Please come back later to check the status of your payment.

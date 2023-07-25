@@ -1,106 +1,68 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.7.5"
 
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.6"
+# Core
+gem "rails", "~> 7.0.6" # The web-application framework that includes everything needed to create database-backed web applications
+gem "pg", "~> 1.1" # PostgreSQL database driver
+gem "puma", "~> 5.0" # A modern, concurrent web server for Ruby
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
-
-# Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
-
-# Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
-
-# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
-
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
-
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
-
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
+# Frontend
+gem "sprockets-rails" # Asset pipeline for Rails
+gem "importmap-rails" # Use JavaScript with ESM import maps
+gem "turbo-rails" # Hotwire's SPA-like page accelerator
+gem "stimulus-rails" # Hotwire's modest JavaScript framework
+gem "jbuilder" # Build JSON APIs with ease
+gem "slim-rails" # HTML Slim Templates
+gem 'bootstrap', '~> 5.1.3' # Bootstrap for CSS styling
+gem 'simple_form' # Forms made easy for Rails
 
 # Authentication and User Management
-gem "devise"
+gem "devise" # Flexible authentication solution for Rails
+gem "cancan" # Authorization Gem for Ruby on Rails
 
-# Ruby Code Style Enforcement
-gem "rubocop", require: false
+# Mail
+gem 'sendgrid-ruby', '~> 5.0' # SendGrid API client for Ruby
+gem 'letter_opener' # Preview mail in the browser instead of sending, only in development
 
-# HTML Slim Templates
-gem "slim-rails"
+# PDF and QR code generation
+gem 'prawn' # Fast, Nimble PDF Writer for Ruby
+gem 'prawn-table' # Table support for Prawn PDFs
+gem 'rqrcode' # Library to encode QR codes
 
-# Date format
-gem "date_validator"
+# Stripe Payment Processing
+gem 'stripe' # Stripe Ruby bindings
 
-# Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
-
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
-
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
-
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
-
-# Use Sass to process CSS
-# gem "sassc-rails"
-
-gem "cancan"
-gem "flash"
-
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+# Others
+gem "date_validator" # Date validation for ActiveRecord
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby] # Timezone data
+gem "bootsnap", require: false # Speed up boot time by caching expensive operations
+gem 'flash' # Easier flash messages
+gem "rubocop", require: false # Ruby static code analyzer and formatter
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[mri mingw x64_mingw]
-end
+  # Debugging
+  gem "debug", platforms: %i[mri mingw x64_mingw] # Debugging tools
 
-group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "html2slim"
-  gem "web-console"
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-end
-
-# group :test do
-# Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-#  gem "capybara"
-#  gem "selenium-webdriver"
-#  gem "webdrivers"
-# end
-
-# Testing for development and style guide enforcement
-group :development, :test do
-  gem "capybara", "~> 2.7", ">= 2.7.1" # Integration testing tool for simulating user interactions with the application
-  gem "codeclimate-test-reporter", require: false # Code coverage reporting tool for tracking test coverage
-  gem "factory_bot_rails" # Fixture replacement for generating test data
-  gem "faker" # Library for generating fake data
-  gem "rspec-rails" # Testing framework for writing and executing tests
-  gem "rubocop-capybara", require: false # RuboCop extension for Capybara-specific linting rules
-  gem "rubocop-factory_bot", require: false # RuboCop extension for FactoryBot-specific linting rules
+  # Code Quality and Test Coverage
   gem "rubocop-rails", require: false # RuboCop extension for Rails-specific linting rules
   gem "rubocop-rspec", require: false # RuboCop extension for RSpec-specific linting rules
+  gem "rubocop-capybara", require: false # RuboCop extension for Capybara-specific linting rules
+  gem "rubocop-factory_bot", require: false # RuboCop extension for FactoryBot-specific linting rules
   gem "simplecov", require: false # Code coverage analysis tool
+  gem "codeclimate-test-reporter", require: false # Code coverage reporting tool for tracking test coverage
+
+  # Testing
+  gem "rspec-rails" # Testing framework for writing and executing tests
+  gem "factory_bot_rails" # Fixture replacement for generating test data
+  gem "faker" # Library for generating fake data
+  gem "capybara", "~> 2.7", ">= 2.7.1" # Integration testing tool for simulating user interactions with the application
+  gem 'dotenv-rails' # Environment variable loader
+
+  # Development Tools
+  gem "html2slim" # HTML to Slim converter
+  gem "web-console" # Rails console on the browser
 end
 
 group :test do

@@ -1,17 +1,25 @@
+/ app/views/event_items/show.html.slim
 .container
   .row
     .col-md-8.offset-md-2
-      h1 Event Details
+      h1 = @event_item.title
+      p = @event_item.description
       hr
 
       .card
         .card-body
-          h5.card-title = @event_item.title
-          p.card-text = @event_item.description
           p.card-text = "Date: #{@event_item.date}"
           p.card-text = "Time: #{@event_item.time}"
           p.card-text = "Location: #{@event_item.location}"
           p.card-text = "Status: #{@event_item.status}"
+          p.card-text = "Ticket Price: #{number_to_currency(@event_item.ticket.price, unit: '$')}"
+          p.card-text = "Number of Tickets Available: #{@event_item.ticket.quantity_available}"
+
+      - if can? :create, Purchase
+        = form_with url: buy_tickets_purchases_path, method: :get, local: true do |form|
+          = form.number_field :quantity, min: 1, max: @event_item.ticket.quantity_available, required: true
+          = form.hidden_field :ticket_id, value: @event_item.ticket.id
+          = form.submit "Buy Tickets", class: 'btn btn-primary'
 
       - if can? :update, @event_item
         = link_to 'Edit', edit_event_item_path(@event_item), class: 'btn btn-primary'

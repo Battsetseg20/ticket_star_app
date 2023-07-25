@@ -5,14 +5,16 @@ class EventItem < ApplicationRecord
 
   belongs_to :event_organizer
 
-  # has_many :tickets, dependent: :destroy
-  # has_many :purchases, through: :tickets
+  has_one :ticket, dependent: :destroy, inverse_of: :event_item
+  has_many :purchases, through: :tickets
+
+  accepts_nested_attributes_for :ticket, allow_destroy: true
 
   validates_presence_of :title, :date, :time, :location, :description, :status
   validate :date_not_in_the_past
 
   before_save :set_default_status, if: :new_record?
-
+ 
   private
 
   def set_default_status
