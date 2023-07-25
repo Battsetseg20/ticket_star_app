@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class User < ApplicationRecord
   # User model. It serves as the parent model for Customer and EventOrganizer models.
   # It is also the model that Devise uses for authentication. So validation concerning registration on the two models are placed here.
@@ -33,19 +31,18 @@ class User < ApplicationRecord
 
   def event_organizer?
     return false unless event_organizer.present?
+
     true
   end
 
   def customer?
     return false unless customer.present?
+
     true
   end
 
   private
 
-  ########################################
-  # Methods for custom validations
-  ########################################
   def above_majority_age
     return unless birthdate && ((Date.current - birthdate.to_date) / 365.25).to_i < 18
 
@@ -58,9 +55,6 @@ class User < ApplicationRecord
     errors.add(:username, "cannot be all the same character")
   end
 
-  ###########################
-  # Methods for format conversion
-  ###########################
   def downcase_fields
     self.email = email.downcase if email.present?
     self.username = username.downcase if username.present?

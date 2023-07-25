@@ -14,7 +14,7 @@ class EventItem < ApplicationRecord
   validate :date_not_in_the_past
 
   before_save :set_default_status, if: :new_record?
- 
+
   private
 
   def set_default_status

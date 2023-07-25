@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Purchase < ApplicationRecord
   # Purchase model is where we will store the information about the purchases that customers make.
   # Customers will be able to purchase tickets for events.
@@ -25,18 +27,18 @@ class Purchase < ApplicationRecord
   # Callbacks
   before_save :calculate_purchase_total
 
-
   def mark_as_succeeded!
     self.status = "succeeded"
-    self.save!
+    save!
   end
 
   def decrement_ticket_quantity!
-    self.ticket.update!(quantity_available: ticket.quantity_available - quantity)
+    ticket.update!(quantity_available: ticket.quantity_available - quantity)
   end
 
   def attach_files(pdf_file_path)
-    self.ticket_pdf.attach(io: File.open(pdf_file_path), filename: "ticket_#{ticket.event_item}_#{customer.user.lastname}.pdf")
+    ticket_pdf.attach(io: File.open(pdf_file_path),
+                      filename: "ticket_#{ticket.event_item}_#{customer.user.lastname}.pdf")
   end
 
   private
@@ -46,4 +48,3 @@ class Purchase < ApplicationRecord
     self.purchase_total = ticket.price * quantity
   end
 end
-

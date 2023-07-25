@@ -31,10 +31,12 @@ class EventItemsController < ApplicationController
       if @event_item.ticket.save
         redirect_to @event_item, notice: "Your event #{@event_item.title} was successfully created."
       else
-        redirect_to new_event_item_path, alert: "Your ticket was not created. #{@event_item.errors.full_messages.join(",")}"
+        redirect_to new_event_item_path,
+                    alert: "Your ticket was not created. #{@event_item.errors.full_messages.join(',')}"
       end
     else
-      redirect_to new_event_item_path, alert: "Your event was not created. #{@event_item.errors.full_messages.join(",")}"
+      redirect_to new_event_item_path,
+                  alert: "Your event was not created. #{@event_item.errors.full_messages.join(',')}"
     end
   end
 
