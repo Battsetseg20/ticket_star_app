@@ -16,7 +16,14 @@ Rails.application.routes.draw do
   end
 
   resources :event_items, only: [:new, :create, :edit, :update, :show, :index, :destroy]
-
+  resources :purchases, only: [:show] do
+    collection do
+      get 'buy_tickets', to: 'purchases#create'
+      get 'success'
+      get 'cancel'
+    end
+  end
+  post '/stripe_webhooks', to: 'stripe_webhooks#receive'
   # TODO:
 
   # add route for customer dashboard
