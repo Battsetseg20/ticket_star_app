@@ -3,8 +3,7 @@
     .col-md-8
       h1 Edit Event
 
-      = simple_form_for @event_item, html: { class: 'form-horizontal' } do |f|
-        = f.error_notification
+      = form_for @event_item, html: { class: 'form-horizontal' } do |f|
 
         .form-group
           = f.label :title, class: 'col-md-4 col-form-label'
@@ -30,6 +29,11 @@
           = f.label :location, class: 'col-md-4 col-form-label'
           .col-md-8
             = f.text_field :location, class: 'form-control'
+        
+        .form-group
+          = f.label :status, class: 'col-md-4 col-form-label'
+          .col-md-8
+            = f.text_field :status, class: 'form-control'
 
         .form-group
           .col-md-8.offset-md-4

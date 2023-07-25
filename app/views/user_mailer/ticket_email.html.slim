@@ -1,0 +1,13 @@
+.container
+    .row.justify-content-center.mt-5
+    .col-md-8
+        .card
+        .card-header.bg-primary.text-white.text-center
+            h2 Ticket Purchase Confirmation
+        .card-body
+            p Thank you for purchasing your ticket(s)!
+            p Event: #{@purchase.ticket.event_item.title}
+            p Date: #{@purchase.ticket.event_item.date}
+        .card-footer.text-muted.text-center
+            p See you at the event!
+            p Ticket Star team
