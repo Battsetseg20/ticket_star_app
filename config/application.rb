@@ -6,7 +6,8 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-# Load environment variables from .env file
+# Load environment variables from .env file, only needed in local env because in production env, we set env variables in heroku
+# ex: heroku config:set SENGRID_KEY=***********
 unless Rails.env.production?
   require 'dotenv/load'
   Dotenv::Railtie.load
@@ -24,5 +25,6 @@ module TicketStarApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
   end
 end

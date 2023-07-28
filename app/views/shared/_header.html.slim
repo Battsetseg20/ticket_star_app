@@ -1,0 +1,20 @@
+header role='banner'
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    .container-fluid
+      = link_to 'Ticket Star', root_path, class: 'navbar-brand'
+      button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarNav
+        ul.navbar-nav.ml-auto
+          - if current_user
+            li.nav-item
+              = link_to 'My Events', event_items_path, class: 'nav-link'
+            li.nav-item
+              = button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link'
+          - else
+            li.nav-item
+              = link_to 'Sign In', new_user_session_path, class: 'nav-link'
+            li.nav-item
+              = link_to 'Sign Up as a Customer', new_customer_registration_path, class: 'nav-link'
+            li.nav-item
+              = link_to 'Sign Up as an Event Organizer', new_event_organizer_registration_path, class: 'nav-link'

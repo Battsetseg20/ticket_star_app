@@ -1,7 +1,7 @@
 class TicketService
   def self.generate_ticket_pdf(purchase)
     # Check that purchase and its related objects are not nil
-    return nil unless purchase && purchase.ticket && purchase.ticket.event_item && purchase.customer && purchase.customer.user
+    return nil unless purchase&.ticket && purchase.ticket.event_item && purchase&.customer && purchase.customer.user
 
     pdf = Prawn::Document.new
 
@@ -21,12 +21,12 @@ class TicketService
     rescue RQRCode::DataTooLarge
       return nil
     end
-    
+
     qr_code_image = qr_code.as_png(size: 200)
 
     # Save the QR code image temporarily
     qr_code_file_path = "#{Rails.root}/tmp/qr_code_#{purchase.ticket.event_item}_#{purchase.customer.user.lastname}.png"
-    
+
     File.open(qr_code_file_path, "wb") do |file|
       file.write(qr_code_image.to_s)
     end
@@ -47,7 +47,7 @@ class TicketService
 
     # Save the PDF file
     pdf_file_path = "#{Rails.root}/tmp/ticket_#{purchase.id}.pdf"
-    
+
     begin
       pdf.render_file pdf_file_path
     rescue Prawn::Errors::CannotFit
