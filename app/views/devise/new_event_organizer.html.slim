@@ -35,4 +35,5 @@ h2 Sign up as an Event Organizer
     br
     = f.password_field :password_confirmation, autocomplete: "new-password", required: true
   .actions
-    = f.submit "Sign up as an Event Organizer"
+    = f.submit "Sign up as an Event Organizer", class: "btn btn-primary"
+    = link_to "Cancel", root_path, class: "btn btn-secondary"

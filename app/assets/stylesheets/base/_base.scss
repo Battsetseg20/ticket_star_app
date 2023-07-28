@@ -1,0 +1,27 @@
+/* Custom button styles using the primary color variable */
+.btn-primary {
+  background-color: $primary-color;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($primary-color, 10%) !important;
+  }
+}
+
+.btn-secondary {
+  background-color: #fff;
+  color: $primary-color;
+  border: 1px solid $primary-color;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($primary-color, 10%) !important;
+    color: #fff;
+  }
+}

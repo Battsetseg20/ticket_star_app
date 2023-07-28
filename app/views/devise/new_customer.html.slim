@@ -35,5 +35,5 @@ h2 Sign up as a Customer
     br
     = f.password_field :password_confirmation, autocomplete: "new-password"
   .actions
-    = f.submit "Sign up as a Customer"
-    = link_to "Cancel", new_customer_registration_path
+    = f.submit "Sign up as a Customer", class: "btn btn-primary"
+    = link_to "Cancel", root_path, class: "btn btn-secondary"

@@ -12,11 +12,13 @@ gem "puma", "~> 5.0" # A modern, concurrent web server for Ruby
 gem "sprockets-rails" # Asset pipeline for Rails
 gem "importmap-rails" # Use JavaScript with ESM import maps
 gem "turbo-rails" # Hotwire's SPA-like page accelerator
+gem 'jquery-rails' # jQuery JavaScript library
 gem "stimulus-rails" # Hotwire's modest JavaScript framework
 gem "jbuilder" # Build JSON APIs with ease
 gem "slim-rails" # HTML Slim Templates
-gem 'bootstrap', '~> 5.1.3' # Bootstrap for CSS styling
-gem 'simple_form' # Forms made easy for Rails
+gem 'bootstrap' # Bootstrap CSS framework
+gem 'sass-rails' # Sass adapter for the Rails asset pipeline
+gem 'font-awesome-rails' # Font Awesome CSS framework
 
 # Authentication and User Management
 gem "devise" # Flexible authentication solution for Rails
@@ -56,7 +58,7 @@ group :development, :test do
   # Testing
   gem "rspec-rails" # Testing framework for writing and executing tests
   gem "factory_bot_rails" # Fixture replacement for generating test data
-  gem "faker" # Library for generating fake data
+  gem "faker" # Library for generating fake data including images
   gem "capybara", "~> 2.7", ">= 2.7.1" # Integration testing tool for simulating user interactions with the application
   gem 'dotenv-rails' # Environment variable loader
 
@@ -72,3 +74,5 @@ group :test do
   gem "shoulda-callback-matchers" # Matchers for testing model callbacks
   gem "shoulda-matchers" # Collection of matchers for testing common Rails functionality
 end
+
+gem "cssbundling-rails", "~> 1.2"
