@@ -1,0 +1,30 @@
+h2 {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.sign-in-container {
+  margin-top: 3rem;
+  margin-bottom: 10rem;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  max-width: 20rem;
+}
+
+input[type="text"], input[type="date"], input[type="email"], input[type="password"], input[type="submit"] {
+  margin-bottom: 1rem;
+  width: 100%;
+  align-self: baseline;
+}
+
+.actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  margin-bottom: 1rem;
+  align-self: baseline;
+}

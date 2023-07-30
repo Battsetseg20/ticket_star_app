@@ -1,4 +1,53 @@
-/* Custom button styles using the primary color variable */
+
+
+.welcome-container {
+  max-width: 1200px;
+}
+
+.alert {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+hr {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: relative;
+
+}
+
+.card-deck {
+  margin-bottom: 3rem;
+}
+
+.no-border-card {
+  border: none;
+}
+
+.card.event-item-list-card {
+  display: flex;
+  max-width: 20rem;
+  
+
+  .card-body {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+
+    .card-title {
+      color: $eerie-black;
+    }
+    .title {
+      font-weight: bold;
+    }
+    .link-button {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
 .btn-primary {
   background-color: $primary-color;
   color: #fff;
@@ -6,6 +55,8 @@
   border-radius: 4px;
   padding: 10px 20px;
   cursor: pointer;
+  width: 100%;
+  max-width: 15rem;
 
   &:hover {
     background-color: darken($primary-color, 10%) !important;
@@ -19,9 +70,41 @@
   border-radius: 4px;
   padding: 10px 20px;
   cursor: pointer;
+  width: 100%;
+  max-width: 15rem;
 
   &:hover {
     background-color: darken($primary-color, 10%) !important;
     color: #fff;
   }
 }
+
+.view-all-button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+  
+  .btn-outline-dark {
+    min-width: 20rem;
+    max-width: 25rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .welcome-container {
+    max-width: 1400px;
+  }
+}
+
+@media (min-width: 1400px) and (max-width: 1599.98px) {
+  .welcome-container {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1399.98px) {
+  .welcome-container {
+    max-width: 1000px;
+  }
+}
+
