@@ -29,6 +29,10 @@
   .form-group
     = form.label :status
     = form.select :status, EventItem.statuses.keys, {}, class: 'form-control', required: true
+  
+  .form-group
+    = form.label :image
+    = form.file_field :image, class: 'form-control', required: true
 
   / Fields for ticket attributes
   = form.fields_for :ticket do |ticket_fields|

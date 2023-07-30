@@ -1,39 +1,40 @@
 h2 Sign up as an Event Organizer
-= form_for(resource, as: resource_name, url: new_event_organizer_registration_path) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :username, "Username", required: true
-    br
-    = f.text_field :username
-  .field
-    = f.label :firstname
-    br
-    = f.text_field :firstname, required: true
-  .field
-    = f.label :lastname
-    br
-    = f.text_field :lastname, required: true
-  .field
-    = f.label :birthdate
-    br
-    = f.date_field :birthdate, start_year: Time.now.year - 100, end_year: Time.now.year, required: true
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email", required: true
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-    br
-    = f.password_field :password, autocomplete: "new-password", required: true
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password", required: true
-  .actions
-    = f.submit "Sign up as an Event Organizer", class: "btn btn-primary"
-    = link_to "Cancel", root_path, class: "btn btn-secondary"
+.container.sign-in-container
+  = form_for(resource, as: resource_name, url: new_event_organizer_registration_path, class: "form-signin") do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .field
+      = f.label :username, "Username", required: true
+      br
+      = f.text_field :username
+    .field
+      = f.label :firstname
+      br
+      = f.text_field :firstname, required: true
+    .field
+      = f.label :lastname
+      br
+      = f.text_field :lastname, required: true
+    .field
+      = f.label :birthdate
+      br
+      = f.date_field :birthdate, start_year: Time.now.year - 100, end_year: Time.now.year, required: true
+    .field
+      = f.label :email
+      br
+      = f.email_field :email, autofocus: true, autocomplete: "email", required: true
+    .field
+      = f.label :password
+      - if @minimum_password_length
+        em
+          | (
+          = @minimum_password_length
+          |  characters minimum)
+      br
+      = f.password_field :password, autocomplete: "new-password", required: true
+    .field
+      = f.label :password_confirmation
+      br
+      = f.password_field :password_confirmation, autocomplete: "new-password", required: true
+    .actions
+      = f.submit "Sign up as an Event Organizer", class: "btn btn-primary"
+      = link_to "Cancel", root_path, class: "btn btn-secondary"

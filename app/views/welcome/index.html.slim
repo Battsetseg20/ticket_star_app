@@ -1,19 +1,14 @@
-- if !current_user
-    p Hello, guest! Please log in or sign up to continue.
-- else
-    h1 Hello #{current_user.firstname} !
-
-    - if current_user.event_organizer?
-        p Welcome to Ticket Star! You are logged in as an event organizer.
-        - if current_user.event_organizer.event_items.nil?
-            p You have no events yet. Click the button below to create a new event.
-            = link_to 'Create New Event', new_event_item_path, class: 'btn btn-primary'
-        - else
-            p You have created the following events:
-            ul
-                - current_user.event_organizer.event_items.each do |event_item|
-                    li = link_to event_item.title, event_item_path(event_item)
-    - else
-        p Welcome to Ticket Star! You are logged in as a customer.
-        p You have purchased the following tickets:
-    
+.container-fluid
+  - if !current_user
+    .alert.alert-info
+        .text-center Hello guest! Please log in or sign up to buy tickets or create events.
+  - @event_items.keys.each do |type|
+    section id=type
+        h2 = type.titleize
+        .card-deck
+            - @event_items[type].each do |event|
+                = render 'event_item', event_item: event
+        .box.view-all-button
+            = link_to "View more #{type.titleize.downcase} events", by_type_event_items_path(type), class: 'btn btn-outline-dark', style: 'justify-content: center;'
+        hr
+  

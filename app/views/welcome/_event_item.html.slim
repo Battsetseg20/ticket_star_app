@@ -1,0 +1,20 @@
+
+  .card.event-item-list-card
+    - if event_item.image.attached? && event_item.image.attachment.blob.present?
+      = image_tag url_for(event_item.image), class: 'card-img-top', style: 'width: 300px;'
+    - else
+      = image_tag 'https://via.placeholder.com/300x300', class: 'card-img-top'
+    .card-body
+      .card-title
+        h5 = event_item.title
+      .card-text
+        .title Event Description
+        p = event_item.description
+      .card-text 
+        .title When
+        p = "#{event_item.date.strftime('%B %d, %Y')} at #{event_item.time.strftime('%I:%M %p')}"
+      .card-text
+        .title Where
+        p = event_item.location
+      .card-text.link-button
+        = link_to 'Buy Ticket', buy_tickets_purchases_path, class: 'btn btn-primary'

@@ -1,0 +1,21 @@
+#bannerCarrouselCaptions.carousel.slide data-ride="carousel"
+  ol.carousel-indicators
+    li data-target="#bannerCarrouselCaptions" data-slide-to="0" class="active"
+    li data-target="#bannerCarrouselCaptions" data-slide-to="1"
+    li data-target="#bannerCarrouselCaptions" data-slide-to="2"
+  .carousel-inner
+    .carousel-item.active
+      = image_tag 'hello.jpg', class: 'd-block w-100', alt: '...'
+      .carousel-caption.d-none.d-md-block
+        h5 Welcome to Ticket Star
+        p Your one stop shop for all your ticketing needs
+    .carousel-item
+      = image_tag 'drink.jpg', class: 'd-block w-100', alt: '...'
+      .carousel-caption.d-none.d-md-block
+        h5 Find your favorite events in one click
+        p We have a wide variety of events to choose from
+    .carousel-item
+      = image_tag 'funny.jpg', class: 'd-block w-100', alt: '...'
+      .carousel-caption.d-none.d-md-block
+        h5 We have the best prices
+        p Simple payment methods and no hidden fees
