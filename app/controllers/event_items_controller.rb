@@ -3,7 +3,7 @@ class EventItemsController < ApplicationController
   before_action :check_event_organizer, only: %i[new create edit update destroy]
 
   def index
-    @event_items = EventItem.all
+    @event_items = EventItem.published.accessible_by(current_ability).order(date: :asc)
 
     respond_to do |format|
       format.html
@@ -26,6 +26,10 @@ class EventItemsController < ApplicationController
 
   def create
     @event_item = current_user.event_organizer.event_items.build(event_item_params)
+    if params[:event_item][:image]
+      @event_item.image.attach(params[:event_item][:image])
+    end
+    
     if can?(:create, EventItem) && @event_item.save
       @event_item.build_ticket(event_item_params[:ticket_attributes])
       if @event_item.ticket.save
@@ -64,6 +68,26 @@ class EventItemsController < ApplicationController
     end
   end
 
+  def by_type
+    @event_items = EventItem.published.where(event_type: event_items_params[:event_type])
+  end
+
+  def hot_events
+    @event_items = EventItem.hot_events.order(date: :asc)
+  end
+
+  def latest_events
+    @event_items = EventItem.latest_events.order(date: :asc)
+  end
+
+  def sold_out
+    @event_items = EventItem.sold_out.order(date: :asc)
+  end
+  
+  def past_events
+    @event_items = EventItem.past_events.order(date: :asc)
+  end
+
   private
 
   def check_event_organizer
@@ -71,7 +95,7 @@ class EventItemsController < ApplicationController
   end
 
   def event_item_params
-    params.require(:event_item).permit(:title, :description, :date, :time, :location, :status, :image,
+    params.require(:event_item).permit(:title, :description, :date, :time, :location, :status, :image, :event_type,
                                        ticket_attributes: %i[price quantity_available])
   end
 end
