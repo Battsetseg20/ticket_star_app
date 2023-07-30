@@ -7,6 +7,8 @@ ruby "2.7.5"
 gem "rails", "~> 7.0.6" # The web-application framework that includes everything needed to create database-backed web applications
 gem "pg", "~> 1.1" # PostgreSQL database driver
 gem "puma", "~> 5.0" # A modern, concurrent web server for Ruby
+gem 'active_storage_validations' # ActiveStorage validations
+gem 'mini_magick', '>= 4.9.5' # Manipulate images with minimal use of memory via ImageMagick / GraphicsMagick
 
 # Frontend
 gem "sprockets-rails" # Asset pipeline for Rails
@@ -42,6 +44,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby] # Timezone data
 gem "bootsnap", require: false # Speed up boot time by caching expensive operations
 gem 'flash' # Easier flash messages
 gem "rubocop", require: false # Ruby static code analyzer and formatter
+gem 'open-uri' # OpenURI is an easy-to-use wrapper for Net::HTTP, Net::HTTPS and Net::FTP
 
 group :development, :test do
   # Debugging
