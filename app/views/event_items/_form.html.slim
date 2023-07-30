@@ -13,6 +13,10 @@
   .form-group
     = form.label :description
     = form.text_area :description, class: 'form-control', required: true
+  
+  .form-group
+    = form.label :event_type, "Event Type"
+    = form.select :event_type, EventItem.event_types.keys.map { |key| [key.humanize, key] }, {}, class: 'form-control', required: true
 
   .form-group
     = form.label :date
@@ -28,11 +32,12 @@
 
   .form-group
     = form.label :status
-    = form.select :status, EventItem.statuses.keys, {}, class: 'form-control', required: true
+    = form.select :status, EventItem.statuses.keys.select { |status| ['draft', 'published'].include?(status) }.map { |key| [key.humanize, key] }, {}, class: 'form-control', required: true
+
   
   .form-group
     = form.label :image
-    = form.file_field :image, class: 'form-control', required: true
+    = form.file_field :image, class: 'form-control', required: true, multipart: true
 
   / Fields for ticket attributes
   = form.fields_for :ticket do |ticket_fields|

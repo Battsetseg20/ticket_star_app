@@ -17,4 +17,4 @@
         .title Where
         p = event_item.location
       .card-text.link-button
-        = link_to 'Buy Ticket', buy_tickets_purchases_path, class: 'btn btn-primary'
+        = link_to 'Buy Ticket', event_item_path(event_item), class: 'btn btn-primary'

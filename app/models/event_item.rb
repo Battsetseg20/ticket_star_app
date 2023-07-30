@@ -10,7 +10,7 @@ class EventItem < ApplicationRecord
   validates :image, content_type: ['image/png', 'image/jpg', 'image/jpeg'], size: { less_than: 1.megabytes }
 
   has_one :ticket, dependent: :destroy, inverse_of: :event_item
-  has_many :purchases, through: :tickets
+  has_many :purchases, through: :ticket # has_one ticket!!!
 
   accepts_nested_attributes_for :ticket, allow_destroy: true
 
@@ -31,6 +31,7 @@ class EventItem < ApplicationRecord
   }
   scope :sold_out, -> { published.joins(:ticket).where('tickets.quantity_available = ?', 0) }
   scope :past_events, -> { completed.where('date < ?', Date.today) }
+  scope :present_events, -> { published.where('date >= ?', Date.today) }
   scope :has_purchases, -> { joins(:purchases).distinct }
 
   def has_succeeded_purchases?

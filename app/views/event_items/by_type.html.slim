@@ -1,0 +1,7 @@
+h2 = "#{@event_type.titleize} Events"
+.container-fluid
+  .card-deck
+      - @event_items.each do |event|
+          = render 'welcome/event_item', event_item: event
+  = link_to 'Back to All Events', root_path, class: 'btn btn-outline-dark'
+

@@ -1,0 +1,22 @@
+h2 Customer Event Items
+
+table.table
+  thead
+    tr
+      th Event Name
+      th Event Status
+      th Purchase Quantity
+      th Total Cost
+      th Purchase Status
+      th Actions
+
+  tbody
+    - @customer_event_items.each do |purchase|
+      tr
+        td = purchase.ticket.event_item.title
+        td = purchase.ticket.event_item.status
+        td = purchase.quantity
+        td = purchase.purchase_total
+        td = purchase.status
+        td
+          = link_to 'View my Purchase', purchase_path(purchase), class: 'btn btn-primary'

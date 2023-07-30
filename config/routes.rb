@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     collection do
       get 'by_type/:event_type', action: :by_type, as: 'by_type'
       get 'hot_events', action: :hot_events, as: 'hot_events'
+      get 'customer_event_items', action: :customer_event_items, as: 'customer_event_items'
+      get 'event_organizer_events', action: :event_organizer_events, as: 'event_organizer_events'
     end
     # TODO: will only add later if enough time to implement some kind of reviewer update job that
     # updated the review score of the event item once new reviews are added or old reviews are deleted
@@ -36,8 +38,4 @@ Rails.application.routes.draw do
     end
   end
   post '/stripe_webhooks', to: 'stripe_webhooks#receive'
-  # TODO:
-
-  # add route for customer dashboard
-  # add route for event organizer dashboard
 end

@@ -9,7 +9,10 @@ header role='banner'
         ul.navbar-nav.ml-auto
           - if current_user
             li.nav-item
-              = link_to 'My Events', event_items_path, class: 'nav-link'
+              - if current_user.customer?
+                = link_to 'My Events', customer_event_items_event_items_path, class: 'nav-link'
+              - elsif current_user.event_organizer?
+                = link_to 'My Events', event_organizer_events_event_items_path, class: 'nav-link'
             li.nav-item
               = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link'
           - else

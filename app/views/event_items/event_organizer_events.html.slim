@@ -1,0 +1,38 @@
+h2 Your Events
+
+- if @event_organizer_events.blank?
+  p You have no events. Click the button below to create one.
+  = link_to 'Create an Event', new_event_item_path, class: 'btn btn-primary'
+- else
+  table.table
+    thead
+      tr
+        th Event Name
+        th Event Status
+        th Date
+        th Location
+        th Quantity Available
+        th Priced at
+        th Current Purchases
+        th Current Revenue
+        th Actions
+
+    tbody
+      - @event_organizer_events.each do |event|
+        tr
+          td = event.title
+          td = event.status
+          td = event.date.strftime('%Y-%m-%d')
+          td = event.location
+          td = event.ticket.quantity_available
+          td = number_to_currency(event.ticket.price, unit: '$')
+          td = event.ticket.purchases.status_succeeded.count
+          td = number_to_currency(event.ticket.purchases.status_succeeded.sum(:purchase_total), unit: '$')
+          td
+            div style="display: flex; flex-direction: row;"
+              - if event.status == 'draft'
+                = link_to 'Edit', edit_event_item_path(event), class: 'btn btn-secondary', style: 'margin-right: 5px;'
+              - if event.ticket.purchases.status_succeeded.none? && !event.past_event?
+                = link_to 'Destroy', event_item_path(event), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, style: 'margin-left: 5px;'
+  = link_to 'Create an Event', new_event_item_path, class: 'btn btn-primary'
+

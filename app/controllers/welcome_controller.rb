@@ -2,7 +2,7 @@
 
 class WelcomeController < ApplicationController
   def index
-    @event_items = EventItem.published.order(date: :desc).group_by(&:event_type)
+    @event_items = EventItem.present_events.order(date: :desc).group_by(&:event_type)
     fixed_order = EventItem.event_types.keys
     @event_items = @event_items.sort_by { |key, _| fixed_order.index(key) }.to_h
 
