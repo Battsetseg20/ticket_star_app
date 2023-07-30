@@ -1,5 +1,5 @@
 / app/views/event_items/show.html.slim
-.container
+#event-item-show
   .row
     .col-md-8.offset-md-2
       h1 = @event_item.title
@@ -21,13 +21,26 @@
         p Please log in or sign up to buy tickets.
       - else
         - if can? :create, Purchase
-          = form_with url: buy_tickets_purchases_path, method: :get, local: true do |form|
-            = form.number_field :quantity, min: 1, max: @event_item.ticket.quantity_available, required: true
+          - if !Rails.env.production?
+            hr
+              | Once clicked on the button below, you will be redirected to the purchase page of Stripe.
+              br
+              | Please prepare your credit card information to complete the purchase.
+              br
+              | To test the purchase, please use the following credit card information: 
+              .text-center
+                | Card Number: 4242 4242 4242 4242
+            hr
+          = form_with url: buy_tickets_purchases_path, id: "purchase-form", method: :get, local: true do |form|
+            = form.number_field :quantity, min: 1, max: @event_item.ticket.quantity_available, class: 'form-control', placeholder: "Please enter here, the number tickets to purchase. Maximum quantity available: #{number_with_delimiter(@event_item.ticket.quantity_available)}", required: true
             = form.hidden_field :ticket_id, value: @event_item.ticket.id
             = form.submit "Buy Tickets", class: 'btn btn-primary'
 
-        - if can? :update, @event_item
-          = link_to 'Edit', edit_event_item_path(@event_item), class: 'btn btn-primary'
-          - unless @event_item.has_succeeded_purchases?
-            = link_to 'Delete', event_item_path(@event_item), method: :delete, data: { confirm: 'Are you sure you want to delete this event?' }, class: 'btn btn-danger'
+        - if can? :update, @event_item  
+          div style="display: flex; flex-direction: column;"
+            - if @event_item .status == 'draft'
+              = link_to 'Edit', edit_event_item_path(@event_item), class: 'btn btn-primary', style: 'margin-right: 5px;'
+            - if @event_item .ticket.purchases.status_succeeded.none? && !@event_item.past_event?
+              = link_to 'Destroy', event_item_path(@event_item), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, style: 'margin-left: 5px;'
+
       = link_to 'Back', event_items_path, class: 'btn btn-secondary'

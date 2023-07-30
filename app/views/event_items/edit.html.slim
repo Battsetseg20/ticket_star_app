@@ -4,6 +4,10 @@
       h1 Edit Event
 
       = form_for @event_item, html: { class: 'form-horizontal' } do |f|
+        - if @event_item.image.attached?
+        .form-group
+          .col-md-8.offset-md-4
+            = image_tag @event_item.image, size: '300x300', alt: 'Event Image', class: 'img-thumbnail'
 
         .form-group
           = f.label :title, class: 'col-md-4 col-form-label'
@@ -14,6 +18,11 @@
           = f.label :description, class: 'col-md-4 col-form-label'
           .col-md-8
             = f.text_area :description, class: 'form-control'
+
+        .form-group
+          = f.label :event_type, "Event Type", class: 'col-md-4 col-form-label'
+          .col-md-8
+            = f.select :event_type, EventItem.event_types.keys.map { |key| [key.humanize, key] }, {}, class: 'form-control'
 
         .form-group
           = f.label :date, class: 'col-md-4 col-form-label'
@@ -33,7 +42,12 @@
         .form-group
           = f.label :status, class: 'col-md-4 col-form-label'
           .col-md-8
-            = f.text_field :status, class: 'form-control'
+            = f.select :status, EventItem.statuses.keys.map { |key| [key.humanize, key] }, {}, class: 'form-control'
+        
+        .form-group
+          = f.label :image, class: 'col-md-4 col-form-label'
+          .col-md-8
+            = f.file_field :image, class: 'form-control'
 
         .form-group
           .col-md-8.offset-md-4

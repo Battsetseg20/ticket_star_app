@@ -1,32 +1,23 @@
-.container 
+.container
   .row
     .col-md-12
       h1 Your Purchase
-      tr 
-        td
-          | Event:
-        td
-          = @purchase.ticket.event_item.title
-      tr
-        td
-          | Price:
-        td
-          = number_to_currency(@purchase.ticket.price, unit: "$")
-      tr
-        td
-          | Quantity:
-        td
-          = @purchase.quantity
-      tr
-        td
-          | Total:
-        td
-          = number_to_currency(@purchase.purchase_total, unit: "$")
-      tr
-        td
-          | Status: 
-        td      
-          = @purchase.status
+      table.table
+        tr
+          th Event:
+          td= @purchase.ticket.event_item.title
+        tr
+          th Price:
+          td= number_to_currency(@purchase.ticket.price, unit: "$")
+        tr
+          th Quantity:
+          td= @purchase.quantity
+        tr
+          th Total:
+          td= number_to_currency(@purchase.purchase_total, unit: "$")
+        tr
+          th Status:
+          td= @purchase.status
 
       - if @purchase.status == 'succeeded'
         | You can download your ticket and QR code below:
