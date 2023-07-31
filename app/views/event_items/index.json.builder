@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.array! @event_items do |event_item|
   json.id event_item.id
   json.title event_item.title

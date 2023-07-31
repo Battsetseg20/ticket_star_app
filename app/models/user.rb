@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # User model. It serves as the parent model for Customer and EventOrganizer models.
   # It is also the model that Devise uses for authentication. So validation concerning registration on the two models are placed here.

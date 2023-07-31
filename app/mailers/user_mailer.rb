@@ -1,4 +1,4 @@
-# app/mailers/user_mailer.rb
+# frozen_string_literal: true
 
 class UserMailer < ApplicationMailer
   def ticket_email

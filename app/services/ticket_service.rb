@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TicketService
   def self.generate_ticket_pdf(purchase)
     # Check that purchase and its related objects are not nil
@@ -32,7 +34,7 @@ class TicketService
     end
 
     # Place the ticket information and the qr code image into the PDF
-    pdf.bounding_box([0, pdf.cursor], width: 270) do
+    pdf.bounding_box([0, pdf.cursor], width: 300) do
       pdf.text "Ticket ID: #{purchase.id}"
       pdf.text "Event: #{purchase.ticket.event_item.title}"
       pdf.text "Date: #{purchase.ticket.event_item.date}"

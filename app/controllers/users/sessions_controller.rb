@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Users
   class SessionsController < Devise::SessionsController
     # DELETE /users/sign_out

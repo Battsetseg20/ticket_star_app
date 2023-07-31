@@ -20,7 +20,7 @@
       - if !current_user
         p Please log in or sign up to buy tickets.
       - else
-        - if can? :create, Purchase
+        - if can? :create, Purchase && @event_item.status == 'published' && !@event_item.past_event?
           - if !Rails.env.production?
             hr
               | Once clicked on the button below, you will be redirected to the purchase page of Stripe.

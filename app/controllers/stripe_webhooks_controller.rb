@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 # For asynchronous payment confirmation, Stripe sends a POST request to the webhook endpoint
 class StripeWebhooksController < ApplicationController
-
   skip_before_action :verify_authenticity_token
 
   def receive

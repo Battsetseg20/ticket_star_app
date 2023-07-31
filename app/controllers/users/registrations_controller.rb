@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Users::RegistrationsController
 # Controller responsible for user registrations. It overrides registration controller of the Devise gem
 # The create action saves the user based on the provided sign-up parameters,
@@ -39,12 +41,12 @@ module Users
         end
       elsif resource.errors.any?
         if params[:user_type].to_sym == :customer
-         # flash[:error] = resource.errors.full_messages.join(", ")
-          set_flash_message! :notice, :"custom_errors", errors: resource.errors.full_messages.join(", ")
+          # flash[:error] = resource.errors.full_messages.join(", ")
+          set_flash_message! :notice, :custom_errors, errors: resource.errors.full_messages.join(", ")
           redirect_to new_customer_registration_path
         elsif params[:user_type].to_sym == :event_organizer
-         # flash[:error] = resource.errors.full_messages.join(", ")
-          set_flash_message! :notice, :"custom_errors", errors: resource.errors.full_messages.join(", ")
+          # flash[:error] = resource.errors.full_messages.join(", ")
+          set_flash_message! :notice, :custom_errors, errors: resource.errors.full_messages.join(", ")
           redirect_to new_event_organizer_registration_path
         end
       else

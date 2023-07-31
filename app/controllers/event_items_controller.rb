@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EventItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_event_organizer, only: %i[new create edit update destroy event_organizer_events]
@@ -79,10 +81,10 @@ class EventItemsController < ApplicationController
   end
 
   def check_edit_permissions
-    if !editable_event?
-      flash[:error] = "You cannot edit an event that has already been purchased."
-      redirect_to event_item_path(@event_item)
-    end
+    return if editable_event?
+
+    flash[:error] = "You cannot edit an event that has already been purchased."
+    redirect_to event_item_path(@event_item)
   end
 
   def editable_event?

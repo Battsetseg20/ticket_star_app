@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ticket < ApplicationRecord
   # Ticket model is where we will store the information about the tickets that are available for purchase.
   # EventOrganizer will be able to create tickets for their events.

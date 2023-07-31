@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
 
@@ -16,7 +18,7 @@ class PurchasesController < ApplicationController
   def create
     @ticket = Ticket.find(params[:ticket_id])
     @event_item = @ticket.event_item
-    #raise if @event_item.sold_out? || @event_item.past_event?
+    # raise if @event_item.sold_out? || @event_item.past_event?
     @quantity = params[:quantity].to_i
     @amount = @ticket.price * @quantity
 
