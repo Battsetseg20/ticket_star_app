@@ -1,6 +1,6 @@
 {
   "name": "ticketstar-app",
-  "private": "true",
+  "private": true,
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "autoprefixer": "^10.4.14",
