@@ -39,10 +39,12 @@ module Users
         end
       elsif resource.errors.any?
         if params[:user_type].to_sym == :customer
-          flash[:error] = resource.errors.full_messages.join(", ")
+         # flash[:error] = resource.errors.full_messages.join(", ")
+          set_flash_message! :notice, :"custom_errors", errors: resource.errors.full_messages.join(", ")
           redirect_to new_customer_registration_path
         elsif params[:user_type].to_sym == :event_organizer
-          flash[:error] = resource.errors.full_messages.join(", ")
+         # flash[:error] = resource.errors.full_messages.join(", ")
+          set_flash_message! :notice, :"custom_errors", errors: resource.errors.full_messages.join(", ")
           redirect_to new_event_organizer_registration_path
         end
       else
@@ -72,7 +74,7 @@ module Users
         root_path
       elsif resource.is_a?(User) && resource.event_organizer.present?
         # Redirect to event organizer dashboard after event organizer registration
-        event_items_path
+        root_path
       else
         super
       end

@@ -1,7 +1,6 @@
 h2 Sign up as a Customer
 .container.sign-in-container
   = form_for(resource, as: resource_name, url: new_customer_registration_path, class: "form-signin") do |f|
-    = render "devise/shared/error_messages", resource: resource
     .field
       = f.label :username
       br

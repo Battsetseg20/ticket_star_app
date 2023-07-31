@@ -56,12 +56,14 @@ RSpec.describe Users::RegistrationsController, type: :request do
 
       it "redirects to the appropriate path after successful sign-up for customer" do
         post new_customer_registration_path, params: valid_params.merge(user_type: :customer)
-        expect(response).to redirect_to(root_path) # TODO: dashboard_path
+        expect(response).to redirect_to(root_path)
+        flash[:notice].should == "Welcome! You have signed up successfully."
       end
 
       it "redirects to the appropriate path after successful sign-up for event organizer" do
         post new_event_organizer_registration_path, params: valid_params.merge(user_type: :event_organizer)
-        expect(response).to redirect_to(root_path) # TODO: dashboard_path
+        expect(response).to redirect_to(root_path)
+        flash[:notice].should == "Welcome! You have signed up successfully."
       end
     end
 
@@ -82,13 +84,13 @@ RSpec.describe Users::RegistrationsController, type: :request do
 
       it "renders the new_customer template for customer" do
         post new_customer_registration_path, params: invalid_params.merge(user_type: :customer)
-        expect(flash[:error]).to be_present
+        expect(flash[:notice]).to be_present
         expect(response).to redirect_to(new_customer_registration_path)
       end
 
       it "renders the new_event_organizer template for event organizer" do
         post new_event_organizer_registration_path, params: invalid_params.merge(user_type: :event_organizer)
-        expect(flash[:error]).to be_present
+        expect(flash[:notice]).to be_present
         expect(response).to redirect_to(new_event_organizer_registration_path)
       end
     end
