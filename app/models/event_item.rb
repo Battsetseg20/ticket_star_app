@@ -9,7 +9,7 @@ class EventItem < ApplicationRecord
   belongs_to :event_organizer
 
   has_one_attached :image
-  validates :image, content_type: ["image/png", "image/jpg", "image/jpeg"], size: { less_than: 1.megabytes }
+  validates :image, content_type: ["image/png", "image/jpg", "image/jpeg"], size: { less_than: 3.megabytes }
 
   has_one :ticket, dependent: :destroy, inverse_of: :event_item
   has_many :purchases, through: :ticket # has_one ticket!!!

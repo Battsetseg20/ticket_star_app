@@ -273,7 +273,7 @@ RSpec.describe EventItemsController, type: :controller do
 
       it "redirects to the event items index" do
         delete :destroy, params: { id: event_item.id }
-        expect(response).to redirect_to(event_items_url)
+        expect(response).to redirect_to(event_organizer_events_event_items_path)
       end
 
       it "sets the flash notice message" do

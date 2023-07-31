@@ -4,7 +4,7 @@
         .text-center Hello guest! Please log in or sign up to buy tickets or create events.
   - @event_items.keys.each do |type|
     section id=type
-        h2 = type.titleize
+        h3 = type.titleize
         .card-deck
             - @event_items[type].each do |event|
                 = render 'event_item', event_item: event

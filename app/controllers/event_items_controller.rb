@@ -54,9 +54,9 @@ class EventItemsController < ApplicationController
   def destroy
     if can_destroy_event_item?
       @event_item.destroy
-      redirect_to event_items_url, notice: "Your event was successfully destroyed."
+      redirect_to event_organizer_events_event_items_path, notice: "Your event was successfully destroyed."
     else
-      redirect_to root_path
+      redirect_to @event_item, error: "Your event was not destroyed. #{event_item.errors.full_messages.join(',')}"
     end
   end
 
@@ -130,5 +130,10 @@ class EventItemsController < ApplicationController
       format.html
       format.json { render json: items }
     end
+  end
+
+  def event_item_params
+    params.require(:event_item).permit(:title, :description, :date, :time, :location, :status, :image, :event_type,
+                                       ticket_attributes: %i[price quantity_available])
   end
 end

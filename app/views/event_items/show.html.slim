@@ -20,7 +20,7 @@
       - if !current_user
         p Please log in or sign up to buy tickets.
       - else
-        - if can? :create, Purchase && @event_item.status == 'published' && !@event_item.past_event?
+        - if can?(:create, Purchase) && @event_item.status == 'published'
           - if !Rails.env.production?
             hr
               | Once clicked on the button below, you will be redirected to the purchase page of Stripe.
@@ -43,4 +43,4 @@
             - if @event_item .ticket.purchases.status_succeeded.none? && !@event_item.past_event?
               = link_to 'Destroy', event_item_path(@event_item), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, style: 'margin-left: 5px;'
 
-      = link_to 'Back', event_items_path, class: 'btn btn-secondary'
+      = link_to 'Back', root_path, class: 'btn btn-secondary'

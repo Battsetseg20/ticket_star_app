@@ -17,4 +17,13 @@
         .title Where
         p = event_item.location
       .card-text.link-button
-        = link_to 'Buy Ticket', event_item_path(event_item), class: 'btn btn-primary'
+        - if current_user
+          - if current_user.event_organizer? && can?(:update, event_item)
+            = link_to 'Edit My Event', edit_event_item_path(event_item), class: 'btn btn-primary', style: 'margin-right: 5px;'
+          - elsif current_user.event_organizer?
+            = link_to 'View', event_item_path(event_item), class: 'btn btn-primary', style: 'margin-right: 5px;'
+          - else
+            = link_to 'Buy Ticket', event_item_path(event_item), class: "btn btn-primary"
+        - else
+          = link_to 'Buy Ticket', event_item_path(event_item), class: "btn btn-primary"
+

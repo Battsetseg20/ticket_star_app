@@ -45,8 +45,9 @@ ActiveRecord::Base.transaction do
       AttachImageJob.perform_later(event_item.id, image_data)
 
       puts "Image attached? #{event_item.image.attached?}"
-  
-      puts "Image attached to #{event_item.title} + #{event_item.id} + count #{count += 1}"
+      if event_item.image.attached?
+        puts "Image attached to #{event_item.title} + #{event_item.id} + count #{count += 1}"
+      end
     end
   end
 
