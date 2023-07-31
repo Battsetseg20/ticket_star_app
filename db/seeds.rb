@@ -9,7 +9,7 @@ include ImageHelper
 
 ActiveRecord::Base.transaction do
   puts 'Creating event items...'
-  100.times do
+  60.times do
     FactoryBot.create(:event_item, :with_ticket)
   end
   puts EventItem.count.to_s + " event items created along with users, event organizers, tickets"
