@@ -7,13 +7,9 @@ This is an online simplistic event ticketing platform built using Ruby on Rails 
 
 ## Demo
 
-Quick Guest and Customer flow:
-![GuestCustomer](https://github.com/Battsetseg20/ticket_star_app/blob/main/app/assets/demos/guest_and_customer.gif)
+- Quick Guest and Customer flow:
 
-Quick Event Organizer flow:
-![GuestCustomer](https://github.com/Battsetseg20/ticket_star_app/blob/main/app/assets/demos/event_organizer.gif)
-
-
+![](https://github.com/Battsetseg20/ticket_star_app/blob/7fbb53c2f22b5ac0d1e08ef550eb9c6690762c6e/app/assets/guest_and_customer_flow.gif)
 
 ### Features / Functional Requirements
 #### User Registration and Authentication
