@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    Ascii85 (1.1.0)
     actioncable (7.0.6)
       actionpack (= 7.0.6)
       activesupport (= 7.0.6)
@@ -73,6 +74,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
+    afm (0.2.2)
     ast (2.4.2)
     autoprefixer-rails (10.4.13.0)
       execjs (~> 2)
@@ -142,6 +144,7 @@ GEM
       railties (>= 3.2, < 8.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    hashery (2.1.2)
     hpricot (0.8.6)
     html2slim (0.2.0)
       hpricot
@@ -206,6 +209,12 @@ GEM
       ast (~> 2.4.1)
       racc
     pdf-core (0.9.0)
+    pdf-reader (2.11.0)
+      Ascii85 (~> 1.0)
+      afm (~> 0.2.1)
+      hashery (~> 2.0)
+      ruby-rc4
+      ttfunk
     pg (1.5.3)
     popper_js (1.16.1)
     prawn (2.4.0)
@@ -311,6 +320,7 @@ GEM
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
     ruby-progressbar (1.13.0)
+    ruby-rc4 (0.1.5)
     ruby2_keywords (0.0.5)
     ruby_http_client (3.3.0)
     sass-rails (6.0.0)
@@ -416,6 +426,7 @@ DEPENDENCIES
   letter_opener
   mini_magick (>= 4.9.5)
   open-uri
+  pdf-reader
   pg (~> 1.1)
   prawn
   prawn-table

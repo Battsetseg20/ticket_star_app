@@ -9,7 +9,7 @@ include ImageHelper
 
 ActiveRecord::Base.transaction do
   puts 'Creating event items...'
-  50.times do
+  100.times do
     FactoryBot.create(:event_item, :with_ticket)
   end
   puts EventItem.count.to_s + " event items created along with users, event organizers, tickets"
@@ -42,7 +42,7 @@ ActiveRecord::Base.transaction do
       image_data = fetch_image(image_url)
       puts "Image fetched from #{image_data}"
   
-      AttachImageJob.perform_now(event_item.id, image_data)
+      AttachImageJob.perform_later(event_item.id, image_data)
 
       puts "Image attached? #{event_item.image.attached?}"
   

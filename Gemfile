@@ -46,6 +46,10 @@ gem 'flash' # Easier flash messages
 gem "rubocop", require: false # Ruby static code analyzer and formatter
 gem 'open-uri' # OpenURI is an easy-to-use wrapper for Net::HTTP, Net::HTTPS and Net::FTP
 
+group :development do
+  gem "web-console" # Rails console on the browser
+end
+
 group :development, :test do
   # Debugging
   gem "debug", platforms: %i[mri mingw x64_mingw] # Debugging tools
@@ -67,7 +71,6 @@ group :development, :test do
 
   # Development Tools
   gem "html2slim" # HTML to Slim converter
-  gem "web-console" # Rails console on the browser
 end
 
 group :test do
@@ -76,6 +79,7 @@ group :test do
   gem "rails-controller-testing" # Support for controller testing, including the `assert_template` method
   gem "shoulda-callback-matchers" # Matchers for testing model callbacks
   gem "shoulda-matchers" # Collection of matchers for testing common Rails functionality
+  gem 'pdf-reader' # PDF reader library
 end
 
 gem "cssbundling-rails", "~> 1.2"
