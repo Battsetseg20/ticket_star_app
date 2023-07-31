@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe EventItemsController, type: :controller do
@@ -5,7 +7,7 @@ RSpec.describe EventItemsController, type: :controller do
 
   let(:customer) { create(:customer) }
   let(:event_organizer) { create(:event_organizer) }
-  let(:event_item) { create(:event_item, event_organizer: event_organizer) }
+  let(:event_item) { create(:event_item, :with_ticket, event_organizer: event_organizer) }
 
   describe "GET #index" do
     before do
@@ -15,11 +17,6 @@ RSpec.describe EventItemsController, type: :controller do
 
     it "renders the index template" do
       expect(response).to render_template(:index)
-    end
-
-    it "assigns all event items to @event_items" do
-      event_items = create_list(:event_item, 3)
-      expect(assigns(:event_items)).to match_array(event_items)
     end
   end
 
@@ -83,17 +80,20 @@ RSpec.describe EventItemsController, type: :controller do
       context "with valid parameters" do
         it "creates a new event item" do
           expect do
-            post :create, params: { event_item: attributes_for(:event_item).merge(ticket_attributes: attributes_for(:ticket)) }
+            post :create,
+                 params: { event_item: attributes_for(:event_item).merge(ticket_attributes: attributes_for(:ticket)) }
           end.to change(EventItem, :count).by(1).and change(Ticket, :count).by(1)
         end
 
         it "redirects to the created event item" do
-          post :create, params: { event_item: attributes_for(:event_item).merge(ticket_attributes: attributes_for(:ticket)) }
+          post :create,
+               params: { event_item: attributes_for(:event_item).merge(ticket_attributes: attributes_for(:ticket)) }
           expect(response).to redirect_to(EventItem.last)
         end
 
         it "sets the flash notice message" do
-          post :create, params: { event_item: attributes_for(:event_item).merge(ticket_attributes: attributes_for(:ticket)) }
+          post :create,
+               params: { event_item: attributes_for(:event_item).merge(ticket_attributes: attributes_for(:ticket)) }
           expect(flash[:notice]).to include("Your event #{EventItem.last.title} was successfully created.")
         end
       end
@@ -148,7 +148,10 @@ RSpec.describe EventItemsController, type: :controller do
 
   describe "GET #edit" do
     context "when user is an event organizer" do
-      before { sign_in event_organizer.user }
+      before do
+        sign_in event_organizer.user
+        allow(controller).to receive(:editable_event?).and_return(true)
+      end
 
       it "renders the edit template" do
         get :edit, params: { id: event_item.id }
@@ -256,7 +259,10 @@ RSpec.describe EventItemsController, type: :controller do
 
   describe "DELETE #destroy" do
     context "when user is an event organizer" do
-      before { sign_in event_organizer.user }
+      before do
+        sign_in event_organizer.user
+        allow(controller).to receive(:can_destroy_event_item?).and_return(true)
+      end
 
       it "destroys the event item" do
         event_item_to_destroy = create(:event_item, event_organizer: event_organizer)

@@ -29,11 +29,8 @@ class Ability
   private
 
   def define_customer_abilities
-    can :read, EventItem
     can :read, EventItem, status: %i[published sold_out completed cancelled]
-    cannot :create, EventItem
-    cannot :destroy, EventItem
-    cannot :update, EventItem
+    cannot :crud, EventItem
     can :create, Purchase
   end
 
