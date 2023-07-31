@@ -5,9 +5,9 @@
 
       = form_for @event_item, html: { class: 'form-horizontal' } do |f|
         - if @event_item.image.attached?
-        .form-group
-          .col-md-8.offset-md-4
-            = image_tag @event_item.image, size: '300x300', alt: 'Event Image', class: 'img-thumbnail'
+          .form-group
+            .col-md-8.offset-md-4
+              = image_tag @event_item.image, size: '300x300', alt: 'Event Image', class: 'img-thumbnail'
 
         .form-group
           = f.label :title, class: 'col-md-4 col-form-label'
