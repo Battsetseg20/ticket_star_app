@@ -1,15 +1,17 @@
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+![Header](https://github.com/Battsetseg20/ticket_star_app/blob/182c0373b2e5e941b0eab402045ca12f4179105b/app/assets/images/ticket_star_logo.png)
 
 # TicketStar 
 
-This is an online simplistic event ticketing platform built using Ruby on Rails and integrated with ticketing, event management and Stripe API for payment processing. The platform allows event organizers to create and manage events , while users can browse and purchase tickets for various events.
+This is an online simplistic event ticketing platform built using Ruby on Rails and integrated with ticketing, event management, and Stripe API for payment processing. The platform allows event organizers to create and manage events, while users can browse and purchase tickets for various events.
 
 ## Demo
 
 Quick Guest and Customer flow:
+![GuestCustomer](https://github.com/Battsetseg20/ticket_star_app/blob/main/app/assets/demos/guest_and_customer.gif)
 
 Quick Event Organizer flow:
+![GuestCustomer](https://github.com/Battsetseg20/ticket_star_app/blob/main/app/assets/demos/event_organizer.gif)
 
 
 
@@ -100,7 +102,7 @@ You can create an account on Stripe and from their dashboard > developers > you 
 
 Although the app is deployed on Heroku:
 
-[![TicketStar](https://ticket-star-d0715dd880f4.herokuapp.com/)
+https://ticket-star-d0715dd880f4.herokuapp.com/
 
 Only production database and sengrid is configured in it. We will not be testing Stripe Checkout on production. After the review, I'll put the app in maintenance mode as Heroku has no free-tier anymore.
 
